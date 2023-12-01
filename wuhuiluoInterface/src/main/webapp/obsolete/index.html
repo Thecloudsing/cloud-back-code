@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/login.css"/>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/axios.min.js"></script>
+	</head>
+	<body>
+	<div id="root" class="main">
+		<h1>Login</h1>
+		<div class="loin">
+			<div class="first">
+				<span class="fa fa-github-alt"></span>
+				<input type="text" placeholder="user name" v-model="account">
+			</div>
+			<div class="first">
+				<span class="fa fa-search"></span>
+				<input type="password" placeholder="password" v-model="password">
+			</div>
+		</div>
+		<div class="last">
+			<input type="checkbox" style="border: 1px solid purple">
+			<a href="#" id="fst1">Remember me</a>
+			<a href="#"><b>Forget password?</b></a>
+		</div>
+		<div class="third">
+			<button @click="login()">Login</button>
+		</div>
+		<div class="third">
+			<a href="../management.html">Sign up</a>
+		</div>
+	</div>
+	<script src="../js/login.js"></script>
+	</body>
+</html>

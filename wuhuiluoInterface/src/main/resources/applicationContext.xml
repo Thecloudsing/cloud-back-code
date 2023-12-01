@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE beans [
+        <!ELEMENT beans (bean*)>
+        <!ELEMENT bean (property*)>
+        <!ELEMENT property (#PCDATA)>
+
+        <!ATTLIST bean id ID #REQUIRED>
+        <!ATTLIST bean class CDATA #IMPLIED>
+        <!ATTLIST property name CDATA #IMPLIED>
+        <!ATTLIST property ref IDREF #IMPLIED>
+        ]>
+
+<beans>
+    <bean id="druid" class="org.example.DAObase.Druid"/>
+    <bean id="dbUtils" class="org.example.DAObase.DBUtils">
+        <property name="druid" ref="druid"/>
+    </bean>
+
+    <bean id="userBasicDAO" class="org.example.DAObase.dao.impl.UserBasicDAOImpl">
+        <property name="dbUtils" ref="dbUtils"/>
+    </bean>
+    <bean id="studentBasicDAO" class="org.example.DAObase.dao.impl.StudentBasicDAOImpl">
+        <property name="dbUtils" ref="dbUtils"/>
+    </bean>
+    <bean id="teacherBasicDAO" class="org.example.DAObase.dao.impl.TeacherBasicDAOImpl">
+        <property name="dbUtils" ref="dbUtils"/>
+    </bean>
+    <bean id="messageTemplateBasicDAO" class="org.example.DAObase.dao.impl.MessageTemplateBasicDAOImpl">
+        <property name="dbUtils" ref="dbUtils"/>
+    </bean>
+
+
+    <bean id="userService" class="org.example.service.impl.UserServiceImpl">
+        <property name="userBasicDAO" ref="userBasicDAO"/>
+    </bean>
+    <bean id="studentService" class="org.example.service.impl.StudentServiceImpl">
+        <property name="studentBasicDAO" ref="studentBasicDAO"/>
+    </bean>
+    <bean id="teacherService" class="org.example.service.impl.TeacherServiceImpl">
+        <property ref="teacherBasicDAO" name="teacherBasicDAO"/>
+    </bean>
+    <bean id="messageTemplateService" class="org.example.service.impl.MessageTemplateServiceImpl">
+        <property ref="messageTemplateBasicDAO" name="messageTemplateBasicDAO"/>
+    </bean>
+
+    <bean id="user" class="org.example.controller.UserController">
+        <property name="userService" ref="userService"/>
+    </bean>
+    <bean id="student" class="org.example.controller.StudentController">
+        <property name="studentService" ref="studentService"/>
+    </bean>
+    <bean id="teacher" class="org.example.controller.TeacherController">
+        <property name="teacherService" ref="teacherService"/>
+    </bean>
+    <bean id="message" class="org.example.controller.MessageTemplateController">
+        <property name="messageTemplateService" ref="messageTemplateService"/>
+    </bean>
+    <bean id="database" class="org.example.controller.InitializeDatabaseController">
+        <property name="druid" ref="druid"/>
+    </bean>
+</beans>

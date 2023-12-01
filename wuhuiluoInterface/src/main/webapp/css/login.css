@@ -1,0 +1,122 @@
+	*{
+		margin: 0;
+		padding: 0;
+		}
+        body {
+            background-image: url(../img/hua.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+        }
+
+        * {
+            font-size: 15px;
+        }
+
+        .main {
+            width: 60%;
+            height: auto;
+            text-align: center;
+            background: rgb(105, 111, 112, 0.4);
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10%;
+            border-radius: 20px;
+        }
+
+        .main>h1 {
+            display: block;
+            color: white;
+            padding-top: 3%;
+            font-size: 20px;
+        }
+
+        .main button ,.third a{
+            color: white;
+            width: 50%;
+            height: 30px;
+            font-size: 20px;
+            background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
+            font-weight: 700px;
+            border: 0;
+            /* border-radius: 20px; */
+            /* margin-top: 30px; */
+            margin-bottom: 30px;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .first input {
+            width: 50%;
+            font-size: 20px;
+            border: 0px;
+            border-bottom: 2px solid white;
+            padding: 5px 10px;
+            background-color: #ffffff00;
+            color: #fff;
+        }
+
+        .main .loin .first i {
+            color: #fff;
+        }
+
+        .last {
+            width: 50%;
+            height: 30px;
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+
+        .main .last input {
+            float: left;
+        }
+
+        .main .last a {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 10px;
+            float: right;
+            color: white;
+        }
+        .main .last a:hover {
+            color: blue;
+        }
+        #fst1 {
+            display: inline-block;
+            font-size: 10px;
+            float: left;
+        }
+
+        .third {
+            width: 50%;
+            margin: 0 auto;
+       }
+
+        .third a:hover {
+            background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+       }
+
+        .main .loin .first input::-webkit-input-placeholder {
+            color: white;
+       }
+
+        .third button:hover {
+            background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+       }
+
+        .main .loin .first span {
+            font-size: 20px;
+            color: white;
+       }
+
+        .main .loin .first input:focus {
+            background-color: rgb(194, 214, 216);
+       }
+
+        .main .loin .first input[type=text]:focus {
+            outline: none;
+        }
+
+        .main .loin .first input[type=password]:focus {
+            outline: none;
+}
+ 

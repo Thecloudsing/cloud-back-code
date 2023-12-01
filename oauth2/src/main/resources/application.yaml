@@ -1,0 +1,88 @@
+server:
+  address: 127.0.0.1
+  port: 9000
+
+logging:
+  level:
+    org.springframework.security: trace
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: ${dreams.datasource.driver-class-name}
+    url: ${dreams.datasource.url}
+    username: ${dreams.datasource.username}
+    password: ${dreams.datasource.password}
+  data:
+    redis:
+      host: ${dreams.redis.host}
+      port: ${dreams.redis.port}
+      password: ${dreams.redis.password}
+      timeout: 5000
+  security:
+    oauth2:
+      client:
+        registration:
+          gitee:
+            provider: gitee
+            client-id: 88c69e87b2e50d2dab4d
+            authorization-grant-type: authorization_code
+            client-name: Sign in with Gitee
+            client-secret: 350b351e8287fc142d01082bcf0dc5c6df7c21ae
+            redirect-uri: ${custom.security.issuer-url}/login/oauth2/code/gitee
+            scope:
+              - emails
+              - projects
+          github:
+            provider: github
+            client-id: 88c69e87b2e50d2dab4d
+            client-secret: 350b351e8287fc142d01082bcf0dc5c6df7c21ae
+            redirect-uri: ${custom.security.issuer-url}/login/oauth2/code/github
+          wechat:
+            provider: wechat
+            client-name: Sign in with WeChat
+            authorization-grant-type: authorization_code
+            client-id: wx946ad2f955901214
+            client-secret: e4635ff2ed22c83294394ac818cf75a7
+            redirect-uri: ${custom.security.issuer-url}/login/oauth2/code/wechat
+            scope: snsapi_userinfo
+        provider:
+          github:
+            user-name-attribute: login
+          wechat:
+            user-name-attribute: nickname
+            token-uri: https://api.weixin.qq.com/sns/oauth2/access_token
+            user-info-uri: https://api.weixin.qq.com/sns/userinfo
+            authorization-uri: https://open.weixin.qq.com/connect/oauth2/authorize
+          gitee:
+            user-name-attribute: login
+            token-uri: https://gitee.com/oauth/token
+            user-info-uri: https://gitee.com/api/v5/user
+            authorization-uri: https://gitee.com/oauth/authorize
+  jackson:
+    default-property-inclusion: non_null
+
+  main:
+    allow-bean-definition-overriding: true
+# Mybatis-Plus 配置
+mybatis-plus:
+  # 扫描mapper文件
+  mapper-locations:
+    - classpath:com/example/mapper/xml/*Mapper.xml
+
+custom:
+  # 自定义认证配置
+  security:
+    # 当前认证服务访问的路径
+    issuer-url: ${dreams.security.issuer-url}
+    # 登录页面路径
+    sign-in-page-uri: ${dreams.security.sign-in-page-uri}
+    # 授权确认页面路径
+    consent-page-uri: ${dreams.security.consent-page-uri}
+    # 设备码验证页面
+    device-activate-page-uri: ${dreams.security.device-activate-page-uri}
+    # 设备码验证成功页面
+    device-activated-page-uri: ${dreams.security.device-activated-page-uri}
+    # 不需要认证的地址
+    ignore-uri-list: ${dreams.security.ignore-uri-list}
