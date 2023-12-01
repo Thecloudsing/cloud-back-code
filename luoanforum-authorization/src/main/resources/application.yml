@@ -1,0 +1,51 @@
+server:
+  port: 9900
+
+
+spring:
+  application:
+    name: authorization-server
+  profiles:
+    active: dev
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/luoanforum_oauth?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    hikari:
+      minimum-idle: 3
+      maximum-pool-size: 10
+      max-lifetime: 30000   #不能小于30秒，否则默认回到1800秒
+      connection-test-query: SELECT 1
+
+  data:
+    redis:
+      url: redis://localhost:6379
+      password: 123456
+      timeout: 10000
+      jedis:
+        pool:
+          max-active: 8
+          max-wait: -1ms
+          max-idle: 8
+          min-idle: 0
+
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true # 是否将日期转换为时间戳
+  security:
+    oauth2:
+      authorizationserver:
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.luoanforum: debug
+    org.springframework.security: trace

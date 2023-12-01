@@ -1,0 +1,33 @@
+server:
+  address: 127.0.0.1
+  port: 8080
+
+logging:
+  level:
+    org.springframework.security: trace
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: ${dreams.datasource.driver-class-name}
+    url: ${dreams.datasource.url}
+    username: ${dreams.datasource.username}
+    password: ${dreams.datasource.password}
+  data:
+    redis:
+      host: ${dreams.redis.host}
+      port: ${dreams.redis.port}
+      password: ${dreams.redis.password}
+      timeout: 5000
+
+  jackson:
+    default-property-inclusion: non_null
+
+  main:
+    allow-bean-definition-overriding: true
+# Mybatis-Plus 配置
+mybatis-plus:
+  # 扫描mapper文件
+  mapper-locations:
+    - classpath:/mapper/*Mapper.xml
